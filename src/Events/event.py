@@ -12,7 +12,3 @@ class Event:
     def deserialize(self, obj: dict[str, str]) -> None:
         self.date = deserializeDateTime(obj["date"])
         self.description = obj["description"]
-        
-    def returnNum(self) -> int:
-        a :str = "blah"
-        return a
