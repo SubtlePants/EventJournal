@@ -1,3 +1,4 @@
+from typing import Self
 from Utils.SerializeUtils.serializeUtils import deserializeEventType, serializeDateTime, deserializeDateTime
 from datetime import datetime
 
@@ -12,7 +13,8 @@ class Event:
     def serialize(self) -> dict[str, str]:
         return {"date": serializeDateTime(self.date), "description": self.description, "eventType": self.eventType.value}
     
-    def deserialize(self, obj: dict[str, str]) -> None:
+    def deserialize(self, obj: dict[str, str]) -> Self:
         self.date = deserializeDateTime(obj["date"])
         self.description = obj["description"]
         self.eventType = deserializeEventType(obj["eventType"])
+        return self

@@ -15,7 +15,8 @@ class AppointmentEvent(Event):
         return parentDict
 
     
-    def deserialize(self, obj: dict[str, str]) -> None:
+    def deserialize(self, obj: dict[str, str]):
         super().deserialize(obj)
         self.appointmentType = deserializeAppointmentType(obj["appointmentType"])
         self.reason = obj["reason"]
+        return self

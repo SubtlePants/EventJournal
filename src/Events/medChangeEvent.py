@@ -1,4 +1,5 @@
 from datetime import datetime
+from typing import Self
 from Events.event import Event
 from Utils.enums import EventType
 
@@ -14,8 +15,9 @@ class MedChangeEvent(Event):
         parentDict.update({"medName": self.medName, "oldDosage": self.oldDosage, "newDosage": self.newDosage})
         return parentDict
     
-    def deserialize(self, obj: dict[str, str]) -> None:
+    def deserialize(self, obj: dict[str, str]) -> Self:
         super().deserialize(obj)
         self.medName = obj["medName"]
         self.oldDosage = obj["oldDosage"]
         self.newDosage = obj["newDosage"]
+        return self

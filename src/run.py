@@ -1,18 +1,20 @@
 from datetime import datetime
+from typing import List
 from Events.seizureEvent import SeizureEvent
+from Events.appointmentEvent import AppointmentEvent
+from Utils.enums import AppointmentType
+from Events.event import Event
+from FileSystem.eventfile import readEventsFromFile, writeEventsToFile
 
 # a = AppointmentEvent(datetime.now(), "testdesc", AppointmentType.NEUROLOGY, "testreason")
 a = SeizureEvent(datetime.now(), "test", True, 5)
 
-serA = a.serialize()
+b = AppointmentEvent(datetime.now(), "test", AppointmentType.NEUROLOGY, "check up")
 
-#deserA = AppointmentEvent(datetime.now(), "blah", AppointmentType.OTHER, "blah")
-deserA = SeizureEvent(datetime.now(), "", False, 0)
+events: List[Event] = [a, b]
 
-deserA.deserialize(serA)
+writeEventsToFile(events)
 
-print(deserA.eventType)
-#print(deserA.appointmentType)
-print(deserA.description)
-print(deserA.temporalSymptoms)
-print(deserA.duration)
+events2 = readEventsFromFile()
+print(events2[0].duration if isinstance(events2[0], SeizureEvent) else "First Event Failed to Save/Load")
+print(events2[1].appointmentType if isinstance(events2[1], AppointmentEvent) else "Second Event Failed to Save/Load")

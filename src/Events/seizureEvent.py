@@ -1,4 +1,5 @@
 from datetime import datetime
+from typing import Self
 from Events.event import Event
 from Utils.enums import EventType
 
@@ -13,7 +14,8 @@ class SeizureEvent(Event):
         parentDict.update({"temporal": str(self.temporalSymptoms), "duration": str(self.duration)})
         return parentDict
     
-    def deserialize(self, obj: dict[str, str]) -> None:
+    def deserialize(self, obj: dict[str, str]) -> Self:
         super().deserialize(obj)
         self.temporalSymptoms = True if obj["temporal"] == "True" else False
         self.duration = int(obj["duration"])
+        return self
