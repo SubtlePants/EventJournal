@@ -6,3 +6,8 @@ class AppointmentType(Enum):
     CARDIOLOGY = "Cardiology"
     EMERGENCYROOM = "Emergency Room"
     OTHER = "Other"
+
+class EventType(Enum):
+    APPOINTMENT= "Appointment"
+    MEDCHANGE = "Med Change"
+    SEIZURE = "Seizure"

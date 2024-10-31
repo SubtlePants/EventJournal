@@ -1,5 +1,5 @@
 from datetime import datetime
-from Utils.enums import AppointmentType
+from Utils.enums import AppointmentType, EventType
 
 serializedDateFormatCode = "%d/%m/%y %H:%M"
 
@@ -14,3 +14,9 @@ def deserializeAppointmentType(typeValue: str) -> AppointmentType:
         return AppointmentType(typeValue)
     except:
         raise TypeError("Unknown Appointment Type")
+
+def deserializeEventType(typeValue: str) -> EventType:
+    try:
+        return EventType(typeValue)
+    except:
+        raise TypeError("Unkown Event Type")

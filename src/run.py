@@ -1,15 +1,18 @@
 from datetime import datetime
-from Events.appointmentEvent import AppointmentEvent
-from Utils.enums import AppointmentType
+from Events.seizureEvent import SeizureEvent
 
-a = AppointmentEvent(datetime.now(), "testdesc", AppointmentType.NEUROLOGY, "testreason")
+# a = AppointmentEvent(datetime.now(), "testdesc", AppointmentType.NEUROLOGY, "testreason")
+a = SeizureEvent(datetime.now(), "test", True, 5)
 
 serA = a.serialize()
 
-deserA = AppointmentEvent(datetime.now(), "blah", AppointmentType.OTHER, "blah")
+#deserA = AppointmentEvent(datetime.now(), "blah", AppointmentType.OTHER, "blah")
+deserA = SeizureEvent(datetime.now(), "", False, 0)
 
 deserA.deserialize(serA)
 
-print(deserA.type)
+print(deserA.eventType)
+#print(deserA.appointmentType)
 print(deserA.description)
-print(deserA.reason)
+print(deserA.temporalSymptoms)
+print(deserA.duration)
