@@ -10,7 +10,7 @@ def deserializeDateTime(dateString: str) -> datetime:
     return datetime.strptime(dateString, serializedDateFormatCode)
 
 def deserializeAppointmentType(typeValue: str) -> AppointmentType:
-    for type in AppointmentType:
-        if AppointmentType(type):
-            return type
-    raise ValueError("Appointment Type Unkown")
+    try:
+        return AppointmentType(typeValue)
+    except:
+        raise TypeError("Unknown Appointment Type")
