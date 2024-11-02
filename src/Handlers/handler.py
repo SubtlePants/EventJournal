@@ -1,5 +1,5 @@
 from Events.event import Event
-from src.Events.eventfactory import serializedEventFactory
+from Events.eventfactory import serializedEventFactory
 from UserInterface.userinterface import UserInterface
 
 class NewEventHandler:
