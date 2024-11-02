@@ -1,14 +1,15 @@
+from dataclasses import dataclass
 from typing import Self
 from Utils.SerializeUtils.serializeUtils import deserializeEventType, serializeDateTime, deserializeDateTime
 from datetime import datetime
 
 from Utils.enums import EventType
 
+@dataclass
 class Event:
-    def __init__(self, date: datetime, description: str, eventType: EventType ) -> None:
-        self.date: datetime = date
-        self.description: str = description
-        self.eventType: EventType = eventType
+    description: str
+    date: datetime
+    eventType: EventType
     
     def serialize(self) -> dict[str, str]:
         return {"date": serializeDateTime(self.date), "description": self.description, "eventType": self.eventType.value}

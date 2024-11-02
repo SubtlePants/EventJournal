@@ -1,13 +1,13 @@
-from datetime import datetime
+from dataclasses import field, dataclass
 from Events.event import Event
 from Utils.SerializeUtils.serializeUtils import deserializeAppointmentType
 from Utils.enums import AppointmentType, EventType
 
+@dataclass
 class AppointmentEvent(Event):
-    def __init__(self, date: datetime, description: str, appointmentType: AppointmentType, reason: str ) -> None:
-        super().__init__(date, description, EventType.APPOINTMENT)
-        self.appointmentType: AppointmentType = appointmentType
-        self.reason: str = reason
+    appointmentType: AppointmentType
+    reason: str
+    eventType: EventType = field(default = EventType.APPOINTMENT, init= False)
     
     def serialize(self) -> dict[str, str]:
         parentDict =super().serialize()

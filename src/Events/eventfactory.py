@@ -9,13 +9,13 @@ from Events.event import Event
 def serializedEventFactory(serializedEvent: dict[str, str]) -> Event:
     match serializedEvent["eventType"]:
         case EventType.SEIZURE.value:
-            return SeizureEvent(datetime.min, "", False, -1).deserialize(serializedEvent)
+            return SeizureEvent(date=datetime.min, description="", temporalSymptoms=False, duration=-1).deserialize(serializedEvent)
                     
         case EventType.APPOINTMENT.value:
-            return AppointmentEvent(datetime.min, "", AppointmentType.OTHER, "") .deserialize(serializedEvent)
+            return AppointmentEvent(date=datetime.min, description="", appointmentType=AppointmentType.OTHER, reason="") .deserialize(serializedEvent)
         
         case EventType.MEDCHANGE.value:
-            return MedChangeEvent(datetime.min, "", "", "", "").deserialize(serializedEvent)
+            return MedChangeEvent(date=datetime.min, description="", medName="", oldDosage="", newDosage="").deserialize(serializedEvent)
         
         case _:
             raise TypeError("Invalid Event Type")

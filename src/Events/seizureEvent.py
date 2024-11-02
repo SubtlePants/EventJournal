@@ -1,13 +1,13 @@
-from datetime import datetime
+from dataclasses import dataclass, field
 from typing import Self
 from Events.event import Event
 from Utils.enums import EventType
 
+@dataclass
 class SeizureEvent(Event):
-    def __init__(self, date: datetime, description: str, temporalSymptoms: bool, duration: int) -> None:
-        super().__init__(date, description, EventType.SEIZURE)
-        self.temporalSymptoms = temporalSymptoms
-        self.duration = duration
+    temporalSymptoms: bool
+    duration: int
+    eventType: EventType = field(init=False,default= EventType.SEIZURE)
     
     def serialize(self) -> dict[str, str]:
         parentDict = super().serialize()
