@@ -4,6 +4,7 @@ from Events.appointmentEvent import AppointmentEvent
 from Events.medChangeEvent import MedChangeEvent
 from Events.seizureEvent import SeizureEvent
 from Events.event import Event
+from Events.stressevent import StressEvent
 
 
 def serializedEventFactory(serializedEvent: dict[str, str]) -> Event:
@@ -16,6 +17,9 @@ def serializedEventFactory(serializedEvent: dict[str, str]) -> Event:
         
         case EventType.MEDCHANGE.value:
             return MedChangeEvent(date=datetime.min, description="", medName="", oldDosage="", newDosage="").deserialize(serializedEvent)
+        
+        case EventType.STRESS.value:
+            return StressEvent(description="", date=datetime.min).deserialize(serializedEvent)
         
         case _:
             raise TypeError("Invalid Event Type")

@@ -11,3 +11,4 @@ class EventType(Enum):
     APPOINTMENT= "Appointment"
     MEDCHANGE = "Med Change"
     SEIZURE = "Seizure"
+    STRESS = "Stress"
