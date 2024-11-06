@@ -5,7 +5,7 @@ from Events.eventfactory import serializedEventFactory
 
 EVENTS_FILE_PATH = 'events.json'
 
-def serializeEvents(events: List[Event]) -> List[dict[str, str]]:
+def _serializeEvents(events: List[Event]) -> List[dict[str, str]]:
     serializedEvents: List[dict[str, str]] = []
    
     for event in events:
@@ -13,7 +13,7 @@ def serializeEvents(events: List[Event]) -> List[dict[str, str]]:
    
     return serializedEvents
 
-def deserializeEvents(serializedEvents: List[dict[str,str]]) -> List[Event]:
+def _deserializeEvents(serializedEvents: List[dict[str,str]]) -> List[Event]:
     events: List[Event] = []
     for event in serializedEvents:
         events.append(serializedEventFactory(event))
@@ -21,10 +21,13 @@ def deserializeEvents(serializedEvents: List[dict[str,str]]) -> List[Event]:
 
 def writeEventsToFile(events: List[Event]) -> None:
     with open(EVENTS_FILE_PATH, 'w') as file:
-        file.write(json.dumps(serializeEvents(events)))
+        file.write(json.dumps(_serializeEvents(events)))
 
 def readEventsFromFile() -> List[Event]:
-    with open(EVENTS_FILE_PATH, 'r') as file:
-        eventsJSON = file.read()
-    serializedEvents = json.loads(eventsJSON)
-    return deserializeEvents(serializedEvents)
+    try:
+        with open(EVENTS_FILE_PATH, 'r') as file:
+            eventsJSON = file.read()
+        serializedEvents = json.loads(eventsJSON)
+        return _deserializeEvents(serializedEvents)
+    except:
+        raise IOError("File not found")
