@@ -2,7 +2,7 @@ from Events.event import Event
 from Events.eventfactory import serializedEventFactory
 from UserInterface.userinterface import UserInterface
 
-class NewEventHandler:
+class NewInputEventHandler:
     def __init__(self, interface: UserInterface) -> None:
         self.userInterface = interface
     

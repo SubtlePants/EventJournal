@@ -7,7 +7,7 @@ from Events.event import Event
 from FileSystem.eventfile import readEventsFromFile, writeEventsToFile
 from Events.medChangeEvent import MedChangeEvent
 from UserInterface.testinterface import TestInterface
-from Handlers.handler import NewEventHandler
+from Handlers.handler import NewInputEventHandler
 from UserInterface.commandline import CommandLineInterface
 
 # a = AppointmentEvent(datetime.now(), "testdesc", AppointmentType.NEUROLOGY, "testreason")
@@ -28,7 +28,7 @@ print(events2[2].oldDosage if isinstance(events2[2], MedChangeEvent) else "Third
 
 testInterface = TestInterface()
 
-eventHandler = NewEventHandler(interface=CommandLineInterface())
+eventHandler = NewInputEventHandler(interface=CommandLineInterface())
 
 eventFromHandler = eventHandler.addEventFromUser()
 print(eventFromHandler.serialize())
