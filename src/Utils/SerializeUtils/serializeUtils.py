@@ -1,7 +1,7 @@
 from datetime import datetime
 from Utils.enums import AppointmentType, EventType
+from Utils.dateformatcodes import serializedDateFormatCode
 
-serializedDateFormatCode = "%d/%m/%y %H:%M"
 
 def serializeDateTime(dateTime: datetime) -> str:
     return dateTime.strftime(serializedDateFormatCode)
